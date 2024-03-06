@@ -77,7 +77,7 @@ public class ImproveCoverage {
     private void dynamicLoadAndDisable(String plugin) throws IOException, InterruptedException, RestartRequiredException {
         PluginManagerUtil.dynamicLoad(plugin, r.jenkins, true);
     }
-    
+
     @WithPlugin("htmlpublisher.jpi")
     @Test
     public void pluginListViaJSONApi() throws IOException {

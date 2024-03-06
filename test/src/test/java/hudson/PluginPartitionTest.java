@@ -9,9 +9,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import hudson.PluginManager;
-import hudson.PluginManagerUtil;
-import hudson.PluginWrapper;
 import hudson.cli.CLICommandInvoker;
 import hudson.cli.EnablePluginCommand;
 import hudson.cli.EnablePluginCommandTest;
@@ -26,7 +23,7 @@ import org.jvnet.hudson.test.JenkinsRule;
 import org.jvnet.hudson.test.recipes.WithPlugin;
 
 public class PluginPartitionTest {
-    
+
     @Rule public JenkinsRule r = PluginManagerUtil.newJenkinsRule();
 
     private CLICommandInvoker.Result installTestPlugin(String name) {
@@ -99,14 +96,16 @@ public class PluginPartitionTest {
         assertPluginEnabled(name);
     }
 
-    @WithPlugin("dependee.hpi")
     @Test public void testDisablePlugin() throws Exception {
-        PluginWrapper pw = r.jenkins.pluginManager.getPlugin("dependee");
-        assertNotNull(pw);
+        String name = "token-macro";
+        PluginManager m = r.getPluginManager();
+        assertThat(m.getPlugin(name), is(nullValue()));
+        assertThat(installTestPlugin(name), succeeded());
+        assertPluginEnabled(name);
+        disablePlugin(name);
+        assertPluginDisabled(name);
 
-        pw.doMakeDisabled();
-
-        File disabledHpi = new File(r.jenkins.getRootDir(), "plugins/dependee.hpi.disabled");
+        File disabledHpi = new File(r.jenkins.getRootDir(), "plugins/token-micro.hpi.disabled");
         assertFalse(disabledHpi.exists());
-    } 
+    }
 }

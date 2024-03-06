@@ -3,15 +3,13 @@ package hudson;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.Result;
 import hudson.model.TaskListener;
-
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -66,6 +64,7 @@ public class MockTest {
         assertEquals("VALUE1", build.getEnvironment(listener).get("KEY1"));
         assertEquals("VALUE2", build.getEnvironment(listener).get("KEY2"));
     }
+
     @Test
     public void testGetWorkspace() {
         // Create a mock instance of FilePath (workspace)

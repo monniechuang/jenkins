@@ -101,6 +101,21 @@ THE SOFTWARE.
     <winstone.version>6.18</winstone.version>
   </properties>
 
+  <dependencies>
+    <!-- Mockito dependencies for unit testing -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>3.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>3.9.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
   <!--
     Note that the 'repositories' and 'pluginRepositories' blocks below are actually copy-pasted
     from the Jenkins org pom. This is on purpose to keep Jenkins core buildable even if one has
@@ -120,21 +135,6 @@ THE SOFTWARE.
       <url>https://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
-
-  <dependencies>
-    <!-- Mockito dependencies for unit testing -->
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-inline</artifactId>
-      <version>3.9.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-junit-jupiter</artifactId>
-      <version>3.9.0</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
 
   <build>
     <defaultGoal>install</defaultGoal>
